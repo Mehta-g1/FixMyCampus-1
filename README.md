@@ -88,10 +88,11 @@ python admin.py
 The application is configured to use a MySQL database. The database connection details are set in the app.py file:
 
 ```python
-app.config['MYSQL_HOST'] = 'sql12.freesqldatabase.com'
-app.config['MYSQL_USER'] = 'sql12774989'
-app.config['MYSQL_PASSWORD'] = 'acxEkHFzcu'
-app.config['MYSQL_DB'] = 'sql12774989'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Vikash@123'
+app.config['MYSQL_DB'] = 'fmp'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 ```
 
 ## User Credentials
