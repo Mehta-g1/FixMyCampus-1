@@ -11,11 +11,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = 'fixmycampus_secret_key'
 
-# MySQL Configuration
-app.config['MYSQL_HOST'] = 'sql12.freesqldatabase.com'
-app.config['MYSQL_USER'] = 'sql12774989'
-app.config['MYSQL_PASSWORD'] = 'acxEkHFzcu'
-app.config['MYSQL_DB'] = 'sql12774989'
+
+# Use your own credential for database
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Vikash@123'
+app.config['MYSQL_DB'] = 'fmp'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
