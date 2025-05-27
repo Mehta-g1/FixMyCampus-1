@@ -75,7 +75,7 @@ FixMyCampus is a comprehensive web application that allows students to report an
 
 1. Clone the repository:
 ```
-git clone https://github.com/yourusername/fix-my-campus.git
+git clone https://github.com/mehta-g1/fix-my-campus-1.git
 cd fix-my-campus
 ```
 
@@ -99,10 +99,10 @@ python admin.py
 The application is configured to use a MySQL database. The database connection details are set in the app.py file:
 
 ```python
-app.config['MYSQL_HOST'] = 'sql12.freesqldatabase.com'
-app.config['MYSQL_USER'] = 'sql12774989'
-app.config['MYSQL_PASSWORD'] = 'acxEkHFzcu'
-app.config['MYSQL_DB'] = 'sql12774989'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'your_sql_passwrod'
+app.config['MYSQL_DB'] = 'your_databasr_name'
 ```
 
 ## User Credentials
