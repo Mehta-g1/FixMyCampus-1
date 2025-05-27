@@ -24,40 +24,52 @@ FixMyCampus is a comprehensive web application that allows students to report an
 
 ```
 /fix_my_campus
-├── app.py              # Main Flask application
-├── admin.py            # Admin panel application
-├── requirements.txt    # Python dependencies
-├── static/             # Static files
-│   ├── css/            # CSS files
-│   │   └── styles.css  # Custom styles
-│   ├── js/             # JavaScript files
-│   │   ├── main.js     # Main JS functionality
-│   │   └── charts.js   # Chart initialization
-│   └── images/         # Image files
-└── templates/          # HTML templates
-    ├── layouts/        # Layout templates
-    │   └── base.html   # Base template
-    ├── components/     # Reusable components
-    │   ├── navbar.html # Navigation bar
-    │   └── footer.html # Footer
-    ├── admin/          # Admin templates
-    │   ├── dashboard.html
-    │   ├── login.html
-    │   ├── manage_issues.html
-    │   ├── user_management.html
-    │   └── audit_logs.html
-    ├── login.html
-    ├── signup.html
-    ├── forgot_password.html
-    ├── home.html
-    ├── profile.html
-    ├── change_password.html
-    ├── report_issue.html
-    ├── my_issues.html
-    ├── issue_dashboard.html
-    ├── about_campus.html
-    ├── help_support.html
-    └── about.html
+|   admin.py
+|   app.py
+|   FixMyCampus.zip
+|   README.md
+|   requirements.txt
+|   tree_output.txt
+|   
++---src
+|       index.css
+|       
++---static
+|   +---css
+|   |       styles.css
+|   |       
+|   \---js
+|           charts.js
+|           main.js
+|           
+\---templates
+    |   about.html
+    |   about_campus.html
+    |   change_password.html
+    |   forgot_password.html
+    |   help_support.html
+    |   home.html
+    |   issue_dashboard.html
+    |   login.html
+    |   my_issues.html
+    |   profile.html
+    |   report_issue.html
+    |   signup.html
+    |   
+    +---admin
+    |       audit_logs.html
+    |       dashboard.html
+    |       login.html
+    |       manage_issues.html
+    |       user_management.html
+    |       
+    +---components
+    |       footer.html
+    |       navbar.html
+    |       
+    \---layouts
+            base.html
+            
 ```
 
 ## Installation
