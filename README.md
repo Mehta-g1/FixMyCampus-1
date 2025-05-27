@@ -26,10 +26,9 @@ FixMyCampus is a comprehensive web application that allows students to report an
 /fix_my_campus
 |   admin.py
 |   app.py
-|   FixMyCampus.zip
 |   README.md
 |   requirements.txt
-|   tree_output.txt
+|   File Structure.txt
 |   
 +---src
 |       index.css
