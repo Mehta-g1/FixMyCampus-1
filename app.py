@@ -18,6 +18,7 @@ app.secret_key = 'fixmycampus_secret_key'
 # app.config['MYSQL_DB'] = 'sql12774989'
 # app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
+
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Vikash@123'
