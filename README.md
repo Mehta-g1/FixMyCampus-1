@@ -24,14 +24,50 @@ FixMyCampus is a comprehensive web application that allows students to report an
 
 ```
 /fix_my_campus
+│   admin.py
+│   app.py
+│   FixMyCampus.zip
+│   README.md
+│   requirements.txt
+│
 ├───src
+│       index.css
+│
 ├───static
 │   ├───css
+│   │       styles.css
+│   │
 │   └───js
+│           charts.js
+│           main.js
+│
 └───templates
+    │   about.html
+    │   about_campus.html
+    │   change_password.html
+    │   forgot_password.html
+    │   help_support.html
+    │   home.html
+    │   issue_dashboard.html
+    │   login.html
+    │   my_issues.html
+    │   profile.html
+    │   report_issue.html
+    │   signup.html
+    │
     ├───admin
+    │       audit_logs.html
+    │       dashboard.html
+    │       login.html
+    │       manage_issues.html
+    │       user_management.html
+    │
     ├───components
+    │       footer.html
+    │       navbar.html
+    │
     └───layouts
+            base.html
 ```
 
 ## Installation
