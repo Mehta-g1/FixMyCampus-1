@@ -6,47 +6,52 @@
                     <i class="fas fa-tools mr-2"></i> FixMyCampus
                 </h3>
                 <p class="text-gray-300">
-                    Your trusted platform for reporting and resolving campus issues efficiently. We aim to create a better campus experience for all students.
+                    Your trusted platform for reporting and resolving campus issues efficiently. We aim to create a
+                    better campus experience for all students.
                 </p>
             </div>
-            
+
             <div>
                 <h3 class="text-xl font-bold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="{{ url_for('home') if session.logged_in else url_for('index') }}" class="text-gray-300 hover:text-white transition-colors">
+                        <a href="{% if request.user.is_authenticated %}{% url 'home' %}{% else %}{% url 'index' %}{% endif %}"
+                            class="text-gray-300 hover:text-white transition-colors">
                             <i class="fas fa-chevron-right text-xs mr-2"></i> Home
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('about_campus') }}" class="text-gray-300 hover:text-white transition-colors">
+                        <a href="{% url 'about_campus' %}" class="text-gray-300 hover:text-white transition-colors">
                             <i class="fas fa-chevron-right text-xs mr-2"></i> Institute Info
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('report_issue') if session.logged_in else url_for('login') }}" class="text-gray-300 hover:text-white transition-colors">
+                        <a href="{% if request.user.is_authenticated %}{% url 'report_issue' %}{% else %}{% url 'login' %}{% endif %}"
+                            class="text-gray-300 hover:text-white transition-colors">
                             <i class="fas fa-chevron-right text-xs mr-2"></i> Report Issue
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('help_support') if session.logged_in else url_for('login') }}" class="text-gray-300 hover:text-white transition-colors">
+                        <a href="{% if request.user.is_authenticated %}{% url 'help_support' %}{% else %}{% url 'login' %}{% endif %}"
+                            class="text-gray-300 hover:text-white transition-colors">
                             <i class="fas fa-chevron-right text-xs mr-2"></i> Help & Support
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('about') }}" class="text-gray-300 hover:text-white transition-colors">
+                        <a href="{% url 'about' %}" class="text-gray-300 hover:text-white transition-colors">
                             <i class="fas fa-chevron-right text-xs mr-2"></i> About
                         </a>
                     </li>
                 </ul>
             </div>
-            
+
             <div>
                 <h3 class="text-xl font-bold mb-4">Contact</h3>
                 <ul class="space-y-2">
                     <li class="flex items-start">
                         <i class="fas fa-map-marker-alt mt-1 mr-2 text-secondary-400"></i>
-                        <span class="text-gray-300">NH-58, Baral Partapur Bypass Road, Meerut – 250103, Uttar Pradesh, India</span>
+                        <span class="text-gray-300">NH-58, Baral Partapur Bypass Road, Meerut – 250103, Uttar Pradesh,
+                            India</span>
                     </li>
                     <li class="flex items-center">
                         <i class="fas fa-phone mr-2 text-secondary-400"></i>
@@ -73,7 +78,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400">
             <p>&copy; 2025 FixMyCampus | Meerut Institute of Technology</p>
         </div>

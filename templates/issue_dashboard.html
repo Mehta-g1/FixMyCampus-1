@@ -24,14 +24,16 @@
             </div>
         </div>
         <div class="text-3xl font-bold text-gray-800">
-            {{ status_data.Pending|default(0) }}
+            {{ status_data.Pending|default:0 }}
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
-            <div class="bg-yellow-500 h-2 rounded-full" style="width: {{ (status_data.Pending|default(0) / issues|length * 100)|round }}%"></div>
+            <div class="bg-yellow-500 h-2 rounded-full"
+                style="width: {% widthratio status_data.Pending|default:0 issues|length|default:1 100 %}%"></div>
         </div>
     </div>
-    
-    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500 animate-fadeIn" style="animation-delay: 0.1s;">
+
+    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500 animate-fadeIn"
+        style="animation-delay: 0.1s;">
         <div class="flex justify-between items-center mb-4">
             <div>
                 <h3 class="text-lg font-semibold text-gray-800">In Progress</h3>
@@ -42,14 +44,16 @@
             </div>
         </div>
         <div class="text-3xl font-bold text-gray-800">
-            {{ status_data['In Progress']|default(0) }}
+            {{ status_data.In_Progress|default:0 }}
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
-            <div class="bg-blue-500 h-2 rounded-full" style="width: {{ (status_data['In Progress']|default(0) / issues|length * 100)|round }}%"></div>
+            <div class="bg-blue-500 h-2 rounded-full"
+                style="width: {% widthratio status_data.In_Progress|default:0 issues|length|default:1 100 %}%"></div>
         </div>
     </div>
-    
-    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500 animate-fadeIn" style="animation-delay: 0.2s;">
+
+    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500 animate-fadeIn"
+        style="animation-delay: 0.2s;">
         <div class="flex justify-between items-center mb-4">
             <div>
                 <h3 class="text-lg font-semibold text-gray-800">Resolved</h3>
@@ -60,10 +64,11 @@
             </div>
         </div>
         <div class="text-3xl font-bold text-gray-800">
-            {{ status_data.Resolved|default(0) }}
+            {{ status_data.Resolved|default:0 }}
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
-            <div class="bg-green-500 h-2 rounded-full" style="width: {{ (status_data.Resolved|default(0) / issues|length * 100)|round }}%"></div>
+            <div class="bg-green-500 h-2 rounded-full"
+                style="width: {% widthratio status_data.Resolved|default:0 issues|length|default:1 100 %}%"></div>
         </div>
     </div>
 </div>
@@ -78,7 +83,7 @@
             <canvas id="categoryChart"></canvas>
         </div>
     </div>
-    
+
     <div class="bg-white rounded-xl shadow-lg p-6 animate-fadeIn" style="animation-delay: 0.4s;">
         <h2 class="text-xl font-bold text-gray-800 mb-4">
             <i class="fas fa-chart-bar text-secondary-600 mr-2"></i> Status Distribution
@@ -94,51 +99,59 @@
     <h2 class="text-xl font-bold text-gray-800 mb-6">
         <i class="fas fa-list-alt text-secondary-600 mr-2"></i> Recently Reported Issues
     </h2>
-    
+
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead>
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
+                    </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                {% for issue in issues[:10] %}
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{{ issue.issue_id }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ issue.issue_type }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ issue.location }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {% if issue.status == 'Pending' %}
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                    {{ issue.status }}
-                                </span>
-                            {% elif issue.status == 'In Progress' %}
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                    {{ issue.status }}
-                                </span>
-                            {% else %}
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    {{ issue.status }}
-                                </span>
-                            {% endif %}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ issue.date_reported }}</td>
-                    </tr>
+                {% for issue in issues|slice:":10" %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{{ issue.issue_id }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ issue.issue_type }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ issue.location }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        {% if issue.status == 'Pending' %}
+                        <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                            {{ issue.status }}
+                        </span>
+                        {% elif issue.status == 'In Progress' %}
+                        <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                            {{ issue.status }}
+                        </span>
+                        {% else %}
+                        <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            {{ issue.status }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ issue.date_reported }}</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    
+
     <div class="mt-6 text-center">
-        <a href="{{ url_for('my_issues') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-colors">
+        <a href="{% url 'my_issues' %}"
+            class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-colors">
             <i class="fas fa-eye mr-2"></i> View My Issues
         </a>
-        <a href="{{ url_for('report_issue') }}" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-secondary-600 hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-colors">
+        <a href="{% url 'report_issue' %}"
+            class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-secondary-600 hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-colors">
             <i class="fas fa-plus-circle mr-2"></i> Report New Issue
         </a>
     </div>
@@ -146,27 +159,44 @@
 {% endblock %}
 
 {% block scripts %}
+{{ category_data|json_script:"category-data" }}
+{{ status_data|json_script:"status-data" }}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Categories Data
-        const categoryData = {{ category_data|tojson }};
+        const categoryData = JSON.parse(document.getElementById('category-data').textContent);
         const categoryLabels = Object.keys(categoryData);
         const categoryValues = Object.values(categoryData);
         const categoryColors = [
-            '#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', 
+            '#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444',
             '#ec4899', '#6366f1', '#14b8a6', '#f97316', '#8b5cf6'
         ];
-        
+
         // Status Data
-        const statusData = {{ status_data|tojson }};
-        const statusLabels = Object.keys(statusData);
+        const statusData = JSON.parse(document.getElementById('status-data').textContent);
+
+        // Map back "In_Progress" to "In Progress" for display if needed, 
+        // but here we just need keys and values. 
+        // Note: View might send 'In Progress' key, but 'json_script' handles that fine as it's just JSON.
+        // BUT accessing it in template via dot notation required In_Progress.
+        // So I rely on passing a dict with 'In_Progress' key to template context, OR I can just pass the original dict to the context separately for the JS to use.
+        // I will assume the view sends `status_data` with keys that work for both OR I will adjust the view to send `status_data_js` or similar.
+        // For now, let's assume `status_data` has "In Progress" key, which works for JSON.
+        // BUT dot notation failed.
+        // So the view must provide `status_data` with 'In_Progress' key for Template access, AND maybe 'In Progress' for Chart labels?
+        // Actually, if I change the key to 'In_Progress', the chart label will be 'In_Progress'. I can fix that in JS.
+
+        // Correct approach:
+        // Use keys as they come from JSON.
+        const statusLabels = Object.keys(statusData).map(k => k.replace('_', ' '));
         const statusValues = Object.values(statusData);
         const statusColors = {
             'Pending': '#f59e0b',
             'In Progress': '#3b82f6',
-            'Resolved': '#10b981'
+            'Resolved': '#10b981',
+            'In_Progress': '#3b82f6' // cover both cases
         };
-        
+
         // Category Chart
         const categoryCtx = document.getElementById('categoryChart').getContext('2d');
         new Chart(categoryCtx, {
@@ -192,7 +222,7 @@
                 }
             }
         });
-        
+
         // Status Chart
         const statusCtx = document.getElementById('statusChart').getContext('2d');
         new Chart(statusCtx, {

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,34 +53,32 @@
         }
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     {% block head %}{% endblock %}
 </head>
 <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
     {% include 'components/navbar.html' %}
 
     <div class="container mx-auto px-4 py-8">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="mb-6">
-                    {% for category, message in messages %}
-                        {% if category == 'success' %}
-                            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-2 rounded" role="alert">
-                                <p>{{ message }}</p>
-                            </div>
-                        {% elif category == 'danger' %}
-                            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-2 rounded" role="alert">
-                                <p>{{ message }}</p>
-                            </div>
-                        {% else %}
-                            <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-2 rounded" role="alert">
-                                <p>{{ message }}</p>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
+        {% if messages %}
+            <div class="mb-6">
+                {% for message in messages %}
+                    {% if 'success' in message.tags %}
+                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-2 rounded" role="alert">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% elif 'error' in message.tags or 'danger' in message.tags %}
+                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-2 rounded" role="alert">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% else %}
+                        <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-2 rounded" role="alert">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
 
         {% block content %}{% endblock %}
     </div>
@@ -87,8 +86,8 @@
     {% include 'components/footer.html' %}
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/charts.js' %}"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
